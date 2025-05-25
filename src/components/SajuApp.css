@@ -1,0 +1,40 @@
+.saju-app {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+  border: 2px dashed #aaa;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.saju-app input {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  width: 80%;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.saju-app button {
+  padding: 0.6rem 1.2rem;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 16px;
+}
+
+.saju-result {
+  margin-top: 2rem;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+}

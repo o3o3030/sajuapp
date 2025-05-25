@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './SajuApp.css';
 import { calculateSaju } from '../SajuCalculator';
+import { ganjiInterpretations } from '../ganjiInterpretations';
+
 
 function SajuApp() {
   const [birthdate, setBirthdate] = useState('');
@@ -42,6 +44,9 @@ function SajuApp() {
           <p><b>월주:</b> {result.monthPillar}</p>
           <p><b>일주:</b> {result.dayPillar}</p>
           <p><b>시주:</b> {result.hourPillar}</p>
+          <p style={{ marginTop: '1rem', fontStyle: 'italic' }}>
+      👉 {ganjiInterpretations[result.dayPillar] || '해석 준비 중이에요!'}
+          </p>
         </div>
       )}
     </div>

@@ -1,25 +1,22 @@
 // SajuCalculator.js
 
+import { dayGanjiMap } from './dayGanjiMap';
+
 const heavenlyStems = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계'];
 const earthlyBranches = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
 
 const ganji60 = [];
 for (let i = 0; i < 60; i++) {
-  const stem = heavenlyStems[i % 10];
-  const branch = earthlyBranches[i % 12];
-  ganji60.push(stem + branch);
+  ganji60.push(heavenlyStems[i % 10] + earthlyBranches[i % 12]);
 }
 
-// 시간 지지 계산용 (지지 인덱스)
 const hourBranches = ['자', '축', '인', '묘', '진', '사', '오', '미', '신', '유', '술', '해'];
 
-// 월주 표 (연간에 따른 월간의 천간 매핑, 병인~계축 반복)
 const monthStemOffset = {
   '갑': 2, '을': 4, '병': 6, '정': 8, '무': 0,
   '기': 2, '경': 4, '신': 6, '임': 8, '계': 0,
 };
 
-// 월지 고정 (1~12월)
 const monthBranches = ['인', '묘', '진', '사', '오', '미', '신', '유', '술', '해', '자', '축'];
 
 function getYearPillar(year) {
@@ -35,9 +32,9 @@ function getMonthPillar(yearStem, month) {
   return stem + branch;
 }
 
-// MVP용: 일주는 샘플 대입
-function getDayPillar() {
-  return '병인'; // 임시
+function getDayPillar({ year, month, day }) {
+  const key = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  return dayGanjiMap[key] || '병인'; // 없으면 임시 기본값
 }
 
 function getHourPillar(hour) {
@@ -51,7 +48,7 @@ export function calculateSaju({ year, month, day, hour }) {
   const yearStem = yearPillar[0];
 
   const monthPillar = getMonthPillar(yearStem, parseInt(month, 10));
-  const dayPillar = getDayPillar();
+  const dayPillar = getDayPillar({ year, month, day });
   const hourPillar = getHourPillar(hour);
 
   return {
